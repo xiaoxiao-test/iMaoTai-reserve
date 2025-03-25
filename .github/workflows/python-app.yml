@@ -4,8 +4,8 @@
 name: Python application
 
 on:
-  push:
-    branches: [ "master" ]
+  schedule:
+    - cron: '30 1 * * *'
 
 permissions:
   contents: read
