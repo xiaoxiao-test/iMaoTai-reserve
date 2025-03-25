@@ -1,9 +1,10 @@
 import datetime
 import logging
 import sys
+import os
+import configparser
 
 import config
-import login
 import process
 import privateCrypt
 import send_message
@@ -26,7 +27,15 @@ print(r'''
 process.get_current_session_id()
 
 # 校验配置文件是否存在
-configs = login.config
+def parse_config_from_string(config_text):
+    config = configparser.ConfigParser()
+    config.read_string(config_text)
+    return config
+
+config_text = os.environ.get('CONFIG')
+
+configs = parse_config_from_string(config_text)
+
 if len(configs.sections()) == 0:
     logging.error("配置文件未找到配置")
     sys.exit(1)
