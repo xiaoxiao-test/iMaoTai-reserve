@@ -30,5 +30,8 @@ jobs:
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run Python script
+      env: 
+        CONFIG: ${{secrets.CONFIG}}
+        PRIVATE_AES_KEY: ${{secrets.PRIVATE_AES_KEY}}
       run: |
         python3 main.py
