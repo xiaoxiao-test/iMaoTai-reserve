@@ -3,13 +3,9 @@
 
 name: Python application
 
-# on:
-#   schedule:
-#     - cron: '0 2 * * *'
 on:
   push:
-    branches:
-      - main
+    branches: [ "master" ]
 
 permissions:
   contents: read
@@ -35,7 +31,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run Python script
       env: 
-        CONFIG: ${{vars.CONFIG}}
-        PRIVATE_AES_KEY: ${{vars.PRIVATE_AES_KEY}}
+        CONFIG: ${{secrets.CONFIG}}
+        PRIVATE_AES_KEY: ${{secrets.PRIVATE_AES_KEY}}
       run: |
         python3 main.py
