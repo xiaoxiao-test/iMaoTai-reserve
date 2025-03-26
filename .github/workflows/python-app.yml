@@ -3,9 +3,13 @@
 
 name: Python application
 
+# on:
+#   schedule:
+#     - cron: '0 2 * * *'
 on:
-  schedule:
-    - cron: '0 2 * * *'
+  push:
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -34,4 +38,6 @@ jobs:
         CONFIG: ${{secrets.CONFIG}}
         PRIVATE_AES_KEY: ${{secrets.PRIVATE_AES_KEY}}
       run: |
+        # 在脚本中使用环境变量
+        echo "The CONFIG is: $CONFIG"    
         python3 main.py
