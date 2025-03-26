@@ -34,6 +34,7 @@ def parse_config_from_string(config_text):
 
 config_text = os.environ.get('CONFIG')
 print(f"环境变量配置内容：{config_text}")
+print(f"所有环境变量内容：{os.environ}")
 
 configs = parse_config_from_string(config_text)
 
